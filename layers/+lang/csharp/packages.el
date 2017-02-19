@@ -15,8 +15,16 @@
     csharp-mode
     evil-matchit
     ggtags
+    flycheck
     helm-gtags
-    omnisharp
+    ;;omnisharp
+    (omnisharp :location (recipe
+                          :fetcher github
+                          :repo "OmniSharp/omnisharp-emacs"
+                          :branch "feature-omnisharp-roslyn-support"
+                          :files ("*.el"
+                                  "src/*.el"
+                                  "src/actions/*.el")))
     ))
 
 (defun csharp/init-omnisharp ()
@@ -103,3 +111,6 @@
 
 (defun csharp/post-init-helm-gtags ()
   (spacemacs/helm-gtags-define-keys-for-mode 'csharp-mode))
+
+(defun csharp/post-init-flycheck ()
+  (spacemacs/add-flycheck-hook 'csharp-mode))
